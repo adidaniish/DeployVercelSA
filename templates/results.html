@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Results</title>
+</head>
+<body>
+    <h1>Sentiment Analysis Results for {{ youtube_url }}</h1>
+
+    <h2>Sentiment Breakdown:</h2>
+    <ul>
+        {% for result in sentiment_results %}
+            <li><strong>{{ result.comment }}</strong> - {{ result.label }} (Score: {{ result.score }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Sentiment Distribution</h2>
+    <div>
+        {{ sentiment_pie_chart|safe }}
+    </div>
+</body>
+</html>
