@@ -37,7 +37,7 @@ def fetch_youtube_comments(video_id, api_key, max_comments=100):
     return comments
 
 # Initialize sentiment analysis model
-sentiment_analyzer = pipeline('sentiment-analysis')
+sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased")
 
 def analyze_sentiment(comments):
     sentiment_results = []
@@ -57,20 +57,6 @@ def plot_sentiment_distribution(sentiments):
     fig = px.pie(values=list(counts.values()), names=list(counts.keys()), title="Sentiment Distribution")
     fig_html = fig.to_html(full_html=False)
     return fig_html
-
-# def analyze_keyword_sentiment(comments, keyword):
-#     keyword_comments = [comment for comment in comments if keyword.lower() in comment.lower()]
-#     return analyze_sentiment(keyword_comments)
-
-# def generate_word_cloud(comments, title):
-#     text = ' '.join(comments)
-#     wordcloud = WordCloud().generate(text)
-
-#     plt.figure(figsize=(10,5))
-#     plt.imshow(wordcloud, interpolation="bilinear")
-#     plt.axis("off")
-#     plt.title(title)
-#     plt.show()
 
 @app.route("/")
 def index():
